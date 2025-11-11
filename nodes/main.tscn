@@ -1,0 +1,90 @@
+[gd_scene load_steps=7 format=3 uid="uid://ept21sscujky"]
+
+[ext_resource type="Script" uid="uid://vswvoj5akbx2" path="res://scripts/globals/main.gd" id="1_a3ry3"]
+[ext_resource type="PackedScene" uid="uid://cpib26rnls05q" path="res://nodes/weather_state_machine.tscn" id="2_ufc4x"]
+[ext_resource type="Script" uid="uid://ctgh0dq1a1ime" path="res://scripts/vfx/visual_system.gd" id="3_ufc4x"]
+
+[sub_resource type="Gradient" id="Gradient_ufc4x"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k8dvw"]
+gradient = SubResource("Gradient_ufc4x")
+fill = 1
+fill_from = Vector2(0.5046729, 0.5186916)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_a3ry3"]
+font_size = 64
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_a3ry3")
+
+[node name="WeatherStateMachine" parent="." instance=ExtResource("2_ufc4x")]
+
+[node name="VisualSystem" type="Node2D" parent="."]
+script = ExtResource("3_ufc4x")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="VisualSystem"]
+position = Vector2(509, -21)
+emitting = false
+texture = SubResource("GradientTexture2D_k8dvw")
+lifetime = 1.5999999999999999
+emission_shape = 3
+emission_rect_extents = Vector2(636.855, 1)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WeatherLabel" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 439.0
+offset_top = 243.0
+offset_right = 754.0
+offset_bottom = 362.0
+text = "CLEAR"
+label_settings = SubResource("LabelSettings_a3ry3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_left = 531.0
+offset_top = 481.0
+offset_right = 658.0
+offset_bottom = 614.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WindButton" type="Button" parent="UI/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "WIND"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="IceButton" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "ICE"
+
+[node name="FireButton" type="Button" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "FIRE"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WaterButton" type="Button" parent="UI/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "WATER"
+
+[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer3/WindButton" to="." method="_on_wind_button_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/IceButton" to="." method="_on_ice_button_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer/FireButton" to="." method="_on_fire_button_pressed"]
+[connection signal="pressed" from="UI/VBoxContainer/HBoxContainer2/WaterButton" to="." method="_on_water_button_pressed"]

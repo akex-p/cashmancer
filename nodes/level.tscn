@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://vofwv1xaidfq"]
+
+[ext_resource type="PackedScene" uid="uid://cesoc8xrh2uuo" path="res://assets/char/barbarian/Barbarian.glb" id="1_qsap7"]
+[ext_resource type="AnimationLibrary" uid="uid://h0jm1djk63uc" path="res://assets/animation/Rig_Medium_MovementBasic.glb" id="2_7ug4h"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w8in7"]
+animation = &"Rig_Medium_MovementBasic/Jump_Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qg884"]
+animation = &"Rig_Medium_MovementBasic/Walking_B"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_yno7s"]
+states/Rig_Medium_MovementBasic_Jump_Idle/node = SubResource("AnimationNodeAnimation_w8in7")
+states/Rig_Medium_MovementBasic_Jump_Idle/position = Vector2(346, 159)
+states/Rig_Medium_MovementBasic_Walking_B/node = SubResource("AnimationNodeAnimation_qg884")
+states/Rig_Medium_MovementBasic_Walking_B/position = Vector2(257, 84)
+states/Start/position = Vector2(116, 118)
+graph_offset = Vector2(-204, -8)
+
+[node name="level" type="Node3D"]
+
+[node name="Barbarian" parent="." instance=ExtResource("1_qsap7")]
+
+[node name="GeneralSkeleton" parent="Barbarian/Rig_Medium" index="0"]
+bones/1/position = Vector3(0, 0.50566393, 0)
+bones/4/rotation = Quaternion(-0.04509456, 0.22240034, -0.070918, 0.9713266)
+bones/5/rotation = Quaternion(2.0861623e-07, -0.51858884, -1.788139e-07, 0.85502374)
+bones/7/rotation = Quaternion(0.49033257, 0.8655356, 0.09032968, -0.04756814)
+bones/10/rotation = Quaternion(-0.047790445, -0.17823127, 0.06952206, 0.9803655)
+bones/11/rotation = Quaternion(1.7881393e-07, 0.45520744, 2.0861626e-07, 0.8903855)
+bones/13/rotation = Quaternion(-0.45672718, 0.8845603, 0.019009167, 0.09269459)
+bones/15/rotation = Quaternion(-0.02550801, 0.29166916, 0.9558739, -0.024158554)
+bones/16/rotation = Quaternion(-3.8621576e-07, 0.85351086, -0.52107525, -5.7369355e-08)
+bones/17/rotation = Quaternion(0.0068373056, 0.77316517, -0.6321757, 0.050228234)
+bones/18/rotation = Quaternion(-2.2106378e-05, 1, -0.0002541542, -1.5870482e-05)
+bones/19/rotation = Quaternion(0.041013114, 0.41605192, 0.9079341, 0.029572103)
+bones/20/rotation = Quaternion(6.2212706e-07, 0.66369826, -0.74800044, 9.2202086e-08)
+bones/21/rotation = Quaternion(0.015291009, 0.5801777, -0.8116987, -0.065614976)
+bones/22/rotation = Quaternion(-5.6473946e-05, 1, 0.00045201188, -4.0683128e-05)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Barbarian"]
+libraries = {
+&"Rig_Medium_MovementBasic": ExtResource("2_7ug4h")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Barbarian"]
+tree_root = SubResource("AnimationNodeStateMachine_yno7s")
+anim_player = NodePath("../AnimationPlayer")
+
+[editable path="Barbarian"]
