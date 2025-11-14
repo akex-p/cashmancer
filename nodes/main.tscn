@@ -28,7 +28,7 @@ script = ExtResource("3_ufc4x")
 position = Vector2(509, -21)
 emitting = false
 texture = SubResource("GradientTexture2D_k8dvw")
-lifetime = 1.5999999999999999
+lifetime = 1.6
 emission_shape = 3
 emission_rect_extents = Vector2(636.855, 1)
 

@@ -1,0 +1,95 @@
+[gd_scene load_steps=12 format=3 uid="uid://vofwv1xaidfq"]
+
+[ext_resource type="Script" uid="uid://by3f5nk36fc5" path="res://assets/char/barbarian/barbarian.gd" id="1_6mk7q"]
+[ext_resource type="PackedScene" uid="uid://cesoc8xrh2uuo" path="res://assets/char/barbarian/Barbarian.glb" id="1_ukqt3"]
+[ext_resource type="AnimationLibrary" uid="uid://dkr5lrb446py5" path="res://assets/animation/Rig_Medium_General.glb" id="2_6mk7q"]
+[ext_resource type="AnimationLibrary" uid="uid://h0jm1djk63uc" path="res://assets/animation/Rig_Medium_MovementBasic.glb" id="3_sufnk"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ukqt3"]
+animation = &"Rig_Medium_General/Idle_A"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6mk7q"]
+animation = &"Rig_Medium_MovementBasic/Walking_B"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sufnk"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6mk7q"]
+xfade_time = 0.25
+advance_expression = "velocity < .2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ukqt3"]
+xfade_time = 0.25
+advance_expression = "velocity > .2"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_w8in7"]
+states/End/position = Vector2(817, 217)
+states/Rig_Medium_General_Idle_A/node = SubResource("AnimationNodeAnimation_ukqt3")
+states/Rig_Medium_General_Idle_A/position = Vector2(477, 165)
+states/Rig_Medium_MovementBasic_Walking_B/node = SubResource("AnimationNodeAnimation_6mk7q")
+states/Rig_Medium_MovementBasic_Walking_B/position = Vector2(482, 296)
+states/Start/position = Vector2(191, 249)
+transitions = ["Start", "Rig_Medium_General_Idle_A", SubResource("AnimationNodeStateMachineTransition_sufnk"), "Rig_Medium_MovementBasic_Walking_B", "Rig_Medium_General_Idle_A", SubResource("AnimationNodeStateMachineTransition_6mk7q"), "Rig_Medium_General_Idle_A", "Rig_Medium_MovementBasic_Walking_B", SubResource("AnimationNodeStateMachineTransition_ukqt3")]
+graph_offset = Vector2(-41, 118)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ukqt3"]
+height = 2.25
+
+[node name="Barbarian" type="CharacterBody3D"]
+script = ExtResource("1_6mk7q")
+SPEED = 1.0
+PAUSE_WALK_MAX = 2
+
+[node name="BarbarianGLB" parent="." instance=ExtResource("1_ukqt3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015793204, 0, -0.005977869)
+
+[node name="GeneralSkeleton" parent="BarbarianGLB/Rig_Medium" index="0"]
+bones/1/position = Vector3(4.356118e-18, 0.35468057, 9.8607613e-32)
+bones/2/rotation = Quaternion(-0.043579735, 0.0018599867, 0.042600892, 0.9981395)
+bones/3/rotation = Quaternion(0.025897622, 8.528136e-09, -0.03231956, 0.99914205)
+bones/4/rotation = Quaternion(0.73769504, 0.42160165, -0.49135634, 0.19138196)
+bones/5/rotation = Quaternion(0.25617, -0.6590728, 0.25616977, 0.65907294)
+bones/7/rotation = Quaternion(0.051976524, 0.88911283, 0.31986862, 0.32320425)
+bones/8/rotation = Quaternion(0.09506637, -0.08489003, -0.7013404, 0.70134)
+bones/9/rotation = Quaternion(0.00040040095, -5.447584e-11, 3.289199e-10, 1)
+bones/10/rotation = Quaternion(0.608709, -0.57456213, 0.53031814, -0.13459049)
+bones/11/rotation = Quaternion(0.27427155, 0.6517477, -0.2742713, 0.65174794)
+bones/13/rotation = Quaternion(0.14850143, 0.9294953, 0.26246995, -0.21235707)
+bones/14/rotation = Quaternion(0.10143515, 0.059989013, 0.70217955, 0.70217955)
+bones/15/rotation = Quaternion(2.6628076e-08, -0.2223354, 0.97497034, 1.5102324e-07)
+bones/16/rotation = Quaternion(-2.8517303e-07, 0.9230756, -0.38461852, -4.4818314e-08)
+bones/17/rotation = Quaternion(-6.7001004e-08, 0.5724022, -0.8199731, 1.7347797e-07)
+bones/18/rotation = Quaternion(2.1200405e-08, 0.9999991, 0.0013406074, 1.621844e-08)
+bones/19/rotation = Quaternion(-2.4001068e-08, 0.3353396, 0.94209737, -1.401889e-07)
+bones/20/rotation = Quaternion(2.8555618e-07, 0.93881226, -0.3444293, 4.1634983e-08)
+bones/21/rotation = Quaternion(9.6369305e-08, 0.5134055, -0.85814613, -1.1690739e-07)
+bones/22/rotation = Quaternion(-6.2988397e-09, 0.99999976, 0.00079563365, -3.7149642e-10)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BarbarianGLB"]
+libraries = {
+&"Rig_Medium_General": ExtResource("2_6mk7q"),
+&"Rig_Medium_MovementBasic": ExtResource("3_sufnk")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="BarbarianGLB"]
+tree_root = SubResource("AnimationNodeStateMachine_w8in7")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 0)
+shape = SubResource("CapsuleShape3D_ukqt3")
+
+[node name="PauseWalkTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="SwitchDirectionTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="PauseWalkTimer" to="." method="_on_pause_walk_timer_timeout"]
+[connection signal="timeout" from="SwitchDirectionTimer" to="." method="_on_switch_direction_timer_timeout"]
+
+[editable path="BarbarianGLB"]

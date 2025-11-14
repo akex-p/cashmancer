@@ -3,8 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://bguhiwh0k2var" path="res://assets/product/hat/hat.glb" id="1_0yt4x"]
 
 [node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.91735697, 0, 0)
 
 [node name="hat" parent="." instance=ExtResource("1_0yt4x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.054608047, 0, 0)
 
 [node name="SpringBoneSimulator3D" type="SpringBoneSimulator3D" parent="hat/Armature/Skeleton3D" index="1"]
 setting_count = 1

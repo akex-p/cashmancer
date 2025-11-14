@@ -11,9 +11,8 @@ config_version=5
 [application]
 
 config/name="casting spells"
-run/main_scene="uid://ept21sscujky"
+run/main_scene="uid://4rrtysl5nvil"
 config/features=PackedStringArray("4.5", "Mobile")
-config/icon="res://assets/sprite/icon.svg"
 
 [dotnet]
 
