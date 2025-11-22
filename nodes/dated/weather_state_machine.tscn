@@ -1,0 +1,42 @@
+[gd_scene load_steps=11 format=3 uid="uid://cpib26rnls05q"]
+
+[ext_resource type="Script" uid="uid://dhosuw2aywy0f" path="res://scripts/dated/states/weather_state_machine.gd" id="1_llrjx"]
+[ext_resource type="Script" uid="uid://dexf3qp3tasj5" path="res://scripts/dated/states/hot_state.gd" id="1_tkcea"]
+[ext_resource type="Script" uid="uid://dgeply3whud2s" path="res://scripts/dated/states/clear_state.gd" id="2_8arpn"]
+[ext_resource type="Script" uid="uid://cnk2qbx61nn2v" path="res://scripts/dated/states/cold_state.gd" id="3_oloqc"]
+[ext_resource type="Script" uid="uid://bayspd62h6xyx" path="res://scripts/dated/states/fog_state.gd" id="4_8lnw0"]
+[ext_resource type="Script" uid="uid://c6dsswk83r725" path="res://scripts/dated/states/rain_state.gd" id="5_llrjx"]
+[ext_resource type="Script" uid="uid://cx2ou7yjfvhdl" path="res://scripts/dated/states/snow_state.gd" id="6_megme"]
+[ext_resource type="Script" uid="uid://c5nbo57cip7g4" path="res://scripts/dated/states/thunder_state.gd" id="7_rlyvp"]
+[ext_resource type="Script" uid="uid://dusx7hvhd0f1r" path="res://scripts/dated/states/flood_state.gd" id="8_w8ig6"]
+[ext_resource type="Script" uid="uid://b2d5lxw27u87n" path="res://scripts/dated/states/blizzard_state.gd" id="9_nijnu"]
+
+[node name="WeatherStateMachine" type="Node"]
+script = ExtResource("1_llrjx")
+
+[node name="HotState" type="Node" parent="."]
+script = ExtResource("1_tkcea")
+
+[node name="ClearState" type="Node" parent="."]
+script = ExtResource("2_8arpn")
+
+[node name="ColdState" type="Node" parent="."]
+script = ExtResource("3_oloqc")
+
+[node name="FogState" type="Node" parent="."]
+script = ExtResource("4_8lnw0")
+
+[node name="RainState" type="Node" parent="."]
+script = ExtResource("5_llrjx")
+
+[node name="SnowState" type="Node" parent="."]
+script = ExtResource("6_megme")
+
+[node name="ThunderState" type="Node" parent="."]
+script = ExtResource("7_rlyvp")
+
+[node name="FloodState" type="Node" parent="."]
+script = ExtResource("8_w8ig6")
+
+[node name="BlizzardState" type="Node" parent="."]
+script = ExtResource("9_nijnu")

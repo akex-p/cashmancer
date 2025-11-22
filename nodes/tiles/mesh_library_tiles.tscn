@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2xux7dgp17p1"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xn6w6"]
+size = Vector2(1.9, 1.9)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_alqcd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6whbf"]
+size = Vector3(2, 0.1, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x77c0"]
+albedo_color = Color(1, 0.47657922, 0.3475012, 1)
+
+[node name="MeshLibraryTiles" type="Node3D"]
+
+[node name="ClearTile" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_xn6w6")
+skeleton = NodePath("Area3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_alqcd")
+
+[node name="Area3D" type="StaticBody3D" parent="ClearTile"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClearTile/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+shape = SubResource("BoxShape3D_6whbf")
+
+[node name="Player1Tile" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_xn6w6")
+skeleton = NodePath("Area3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_x77c0")
+
+[node name="Area3D" type="StaticBody3D" parent="Player1Tile"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player1Tile/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+shape = SubResource("BoxShape3D_6whbf")

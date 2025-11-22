@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://jx76q3mw87pt"]
+
+[node name="HealthBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+anchor_right = 0.396875
+anchor_bottom = 0.079166666
+metadata/_edit_use_anchors_ = true

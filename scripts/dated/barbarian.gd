@@ -1,5 +1,13 @@
 extends CharacterBody3D
 
+enum VillagerState {
+	FOLLOW_PATH,
+	RUN_TO_PLAYER,
+	RETURN_TO_PATH
+}
+
+var cur_state: VillagerState = VillagerState.FOLLOW_PATH
+
 @export var SPEED: float = 5.0
 @export var SWITCH_DIRECTION_MAX: int = 4
 @export var SWITCH_DIRECTION_MIN: int = 1
@@ -20,15 +28,16 @@ func _physics_process(delta: float) -> void:
 	
 	rotation.y = lerp_angle(rotation.y, atan2(input_dir.x, input_dir.y), delta * ROTATION_SPEED)
 	
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+		
 	if is_walking:
-		if input_dir:
-			velocity.x = input_dir.x * SPEED
-			velocity.z = input_dir.y * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			velocity.z = move_toward(velocity.z, 0, SPEED)
-
-		move_and_slide()
+		velocity.x = input_dir.x * SPEED
+		velocity.z = input_dir.y * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
+	move_and_slide()
 
 func _on_switch_direction_timer_timeout() -> void:
 	set_random_direction()

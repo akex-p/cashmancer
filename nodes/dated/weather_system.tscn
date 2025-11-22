@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://ept21sscujky"]
 
-[ext_resource type="Script" uid="uid://vswvoj5akbx2" path="res://scripts/globals/main.gd" id="1_a3ry3"]
-[ext_resource type="PackedScene" uid="uid://cpib26rnls05q" path="res://nodes/weather_state_machine.tscn" id="2_ufc4x"]
-[ext_resource type="Script" uid="uid://ctgh0dq1a1ime" path="res://scripts/vfx/visual_system.gd" id="3_ufc4x"]
+[ext_resource type="Script" uid="uid://vswvoj5akbx2" path="res://scripts/dated/main.gd" id="1_a3ry3"]
+[ext_resource type="PackedScene" uid="uid://cpib26rnls05q" path="res://nodes/dated/weather_state_machine.tscn" id="2_ufc4x"]
+[ext_resource type="Script" uid="uid://ctgh0dq1a1ime" path="res://scripts/dated/visual_system.gd" id="3_ufc4x"]
 
 [sub_resource type="Gradient" id="Gradient_ufc4x"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -16,7 +16,7 @@ fill_to = Vector2(0.5, 0)
 [sub_resource type="LabelSettings" id="LabelSettings_a3ry3"]
 font_size = 64
 
-[node name="main" type="Node2D"]
+[node name="WeatherSystem" type="Node2D"]
 script = ExtResource("1_a3ry3")
 
 [node name="WeatherStateMachine" parent="." instance=ExtResource("2_ufc4x")]
