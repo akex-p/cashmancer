@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bo25p6i8wh0jw"
-path="res://.godot/imported/action_fire.png-6bf89e6ba186b0f4541d3b0017480e00.ctex"
+uid="uid://cpwwpdfduwcs7"
+path="res://.godot/imported/UI_ramen_251121.png-b5ad7febd2bcf3d9211519dd0db9c04b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprite/action_fire.png"
-dest_files=["res://.godot/imported/action_fire.png-6bf89e6ba186b0f4541d3b0017480e00.ctex"]
+source_file="res://assets/sprite/UI_ramen_251121.png"
+dest_files=["res://.godot/imported/UI_ramen_251121.png-b5ad7febd2bcf3d9211519dd0db9c04b.ctex"]
 
 [params]
 

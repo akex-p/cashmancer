@@ -116,7 +116,7 @@ func find_nearest_path_point() -> int:
 	return closest
 
 func random_path_point() -> int:
-	return randi_range(0, path_points.size() - 1)
+	return randi_range(0, path_points.size()-1)
 
 func get_tile_under_character() -> Vector3i:
 	var params = PhysicsRayQueryParameters3D.new()

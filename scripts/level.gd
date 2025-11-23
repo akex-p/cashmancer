@@ -7,19 +7,20 @@ extends Node3D
 @onready var gridmap: GridMap = $Tiling/GridMap
 @onready var tile_focus: Node3D = $Tiling/TileFocus
 @onready var tile_focus_secondary: Node3D = $Tiling/TileFocusSecondary
-@onready var mana_bar: ProgressBar = $UI/ManaBar
+@onready var mana_bar: ProgressBar = $UI/Mana/ProgressBar
 
 @export var INTERPOLATION_SPEED: float = 10
 @export var FIRE_COST: int = 5
 @export var WIND_COST: int = 3
 @export var WATER_COST: int = 7
+@export var MAX_MANA: int = 10
+
 
 @export var path_points: Array[Vector3] = [] # fill externally
 @export var player1_pos: Vector3
 @export var player2_pos: Vector3
 
 var cur_mana: int = 0
-var max_mana: int = 10
 
 var cur_cell: Vector3i = Vector3i.ZERO
 var over_cell: Vector3i = Vector3i.ZERO
@@ -147,6 +148,6 @@ func _on_cursor_dropping() -> void:
 	wind_grabbing = false
 
 func _on_get_mana_timeout() -> void:
-	if cur_mana < max_mana:
+	if cur_mana < MAX_MANA:
 		cur_mana += 1
 	update_progress_bar()

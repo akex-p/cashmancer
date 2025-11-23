@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bo25p6i8wh0jw"
-path="res://.godot/imported/action_fire.png-6bf89e6ba186b0f4541d3b0017480e00.ctex"
+uid="uid://dajc3arvamrut"
+path="res://.godot/imported/hand2.png-5ab7c23818e6f02e9e65d998c608c2e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprite/action_fire.png"
-dest_files=["res://.godot/imported/action_fire.png-6bf89e6ba186b0f4541d3b0017480e00.ctex"]
+source_file="res://assets/sprite/hand2.png"
+dest_files=["res://.godot/imported/hand2.png-5ab7c23818e6f02e9e65d998c608c2e5.ctex"]
 
 [params]
 

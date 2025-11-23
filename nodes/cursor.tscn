@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://c6b1ekeocoig2"]
 
 [ext_resource type="Script" uid="uid://ckcag2mqwwup0" path="res://scripts/cursor.gd" id="1_e4vdg"]
-[ext_resource type="Texture2D" uid="uid://dvsrxi0vtecy8" path="res://assets/sprite/hand_open.png" id="2_qf7gk"]
-[ext_resource type="Texture2D" uid="uid://cijag2k104e67" path="res://assets/sprite/hand_grab.png" id="3_76ls5"]
+[ext_resource type="Texture2D" uid="uid://dh244m00u8auc" path="res://assets/sprite/hand1.png" id="2_lh6cl"]
+[ext_resource type="Texture2D" uid="uid://dajc3arvamrut" path="res://assets/sprite/hand2.png" id="3_sompw"]
 [ext_resource type="Texture2D" uid="uid://d86voxljeume" path="res://assets/sprite/action_banner.png" id="4_lh6cl"]
 [ext_resource type="Texture2D" uid="uid://cekghtr25gsyu" path="res://assets/sprite/action_fire.png" id="5_sompw"]
 
@@ -27,7 +27,9 @@ offset_top = -20.0
 offset_right = 28.0
 offset_bottom = 20.0
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("2_qf7gk")
+texture = ExtResource("2_lh6cl")
+expand_mode = 1
+flip_h = true
 
 [node name="GrabHandTexture" type="TextureRect" parent="HandTexture"]
 visible = false
@@ -37,7 +39,9 @@ offset_top = -20.0
 offset_right = 28.0
 offset_bottom = 20.0
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("3_76ls5")
+texture = ExtResource("3_sompw")
+expand_mode = 1
+flip_h = true
 
 [node name="Control" type="Control" parent="."]
 anchors_preset = 0

@@ -1,10 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://4rrtysl5nvil"]
+[gd_scene load_steps=24 format=3 uid="uid://4rrtysl5nvil"]
 
 [ext_resource type="Script" uid="uid://dqigud3cs0y4" path="res://scripts/level.gd" id="1_qsap7"]
-[ext_resource type="Texture2D" uid="uid://ckvew6x68lh7e" path="res://assets/sprite/PRÄSE_transparent_BG.png" id="2_w8in7"]
 [ext_resource type="PackedScene" uid="uid://c6b1ekeocoig2" path="res://nodes/cursor.tscn" id="3_qg884"]
 [ext_resource type="PackedScene" uid="uid://d27ggb4plfdid" path="res://nodes/tiles/tile_focus_secondary.tscn" id="3_yno7s"]
+[ext_resource type="Texture2D" uid="uid://easeh8k0epys" path="res://assets/sprite/path.png" id="4_o3w30"]
 [ext_resource type="PackedScene" uid="uid://cu4wpudkgcwsm" path="res://nodes/tiles/tile_focus.tscn" id="4_qg884"]
+[ext_resource type="Texture2D" uid="uid://cpwwpdfduwcs7" path="res://assets/sprite/UI_ramen_251121.png" id="4_yno7s"]
+[ext_resource type="Texture2D" uid="uid://bo25p6i8wh0jw" path="res://assets/sprite/action_fire.png" id="6_y0dt3"]
+[ext_resource type="Texture2D" uid="uid://dy6x0kvnflq47" path="res://assets/sprite/action_water.png" id="7_o3w30"]
+[ext_resource type="Texture2D" uid="uid://chfsjmhv8a5pj" path="res://assets/sprite/action_wind.png" id="8_pmmww"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7ug4h"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -83,6 +87,10 @@ metadata/_editor_source_scene = "res://nodes/mesh_library_tiles.tscn"
 
 [node name="level" type="Node3D"]
 script = ExtResource("1_qsap7")
+FIRE_COST = 1
+WIND_COST = 1
+WATER_COST = 1
+MAX_MANA = 3
 path_points = Array[Vector3]([Vector3(3, 0, 3), Vector3(-3, 0, 3), Vector3(3, 0, -3), Vector3(-3, 0, -3)])
 player1_pos = Vector3(-4, 0, 0)
 player2_pos = Vector3(4, 0, 0)
@@ -120,6 +128,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 visible = false
 
+[node name="Sprite3D" type="Sprite3D" parent="Tiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.019565105, 0)
+modulate = Color(1, 1, 1, 0.44705883)
+pixel_size = 0.1051
+axis = 1
+texture = ExtResource("4_o3w30")
+
 [node name="Customers" type="Node3D" parent="."]
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -127,6 +142,7 @@ transform = Transform3D(1, 0, 0, 0, 0.34054375, 0.94022864, 0, -0.9402287, 0.340
 fov = 84.9
 
 [node name="GetMana" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
 
 [node name="UI" type="Control" parent="."]
@@ -139,22 +155,55 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 480.0
-texture = ExtResource("2_w8in7")
+texture = ExtResource("4_yno7s")
 expand_mode = 1
 
 [node name="Cursor" parent="UI" instance=ExtResource("3_qg884")]
 layout_mode = 1
 offset_right = -2.2888184e-05
 
-[node name="ManaBar" type="ProgressBar" parent="UI"]
+[node name="Mana" type="Control" parent="UI"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/Mana"]
 layout_mode = 0
-offset_left = 36.0
-offset_top = 51.0
-offset_right = 77.0
-offset_bottom = 190.0
-max_value = 10.0
+offset_left = 6.0
+offset_top = 53.0
+offset_right = 31.0
+offset_bottom = 471.0
+max_value = 3.0
 step = 1.0
 fill_mode = 3
+show_percentage = false
+
+[node name="FireTexture" type="TextureRect" parent="UI/Mana"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 32.0
+offset_right = 45.0
+offset_bottom = 80.0
+texture = ExtResource("6_y0dt3")
+expand_mode = 1
+
+[node name="WaterTexture" type="TextureRect" parent="UI/Mana"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = 175.0
+offset_right = 40.0
+offset_bottom = 223.0
+texture = ExtResource("7_o3w30")
+expand_mode = 1
+
+[node name="WindTexture" type="TextureRect" parent="UI/Mana"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 304.0
+offset_right = 43.0
+offset_bottom = 352.0
+texture = ExtResource("8_pmmww")
+expand_mode = 1
 
 [connection signal="timeout" from="GetMana" to="." method="_on_get_mana_timeout"]
 [connection signal="dropping" from="UI/Cursor" to="." method="_on_cursor_dropping"]
